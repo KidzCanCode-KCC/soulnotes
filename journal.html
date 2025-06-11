@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SoulNotes - Journal</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container fade-in">
+    <h1>Today's Mood</h1>
+    <select id="mood-select" class="dropdown">
+      <option value="">Select a mood...</option>
+    </select>
+
+    <div id="verse-box" class="output-box hidden">
+      <h2>📖 Verse</h2>
+      <p id="verse-text"></p>
+    </div>
+
+    <div id="advice-box" class="output-box hidden">
+      <h2>💡 Advice</h2>
+      <p id="advice-text"></p>
+    </div>
+
+    <textarea id="journal-entry" placeholder="Write your prayer or reflection..."></textarea>
+  <button onclick="window.location.href='index.html'" class="button" style="margin-top: 2rem;">Done</button>
+  </div>
+
+  <script src="moods.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
