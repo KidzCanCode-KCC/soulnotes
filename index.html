@@ -27,7 +27,24 @@
   <div class="sparkle"></div>
   <div class="sparkle"></div>
 
-  <!-- 🎵 Worship Music (Your MP3 file) -->
+  <!-- 👆 Tap Message Overlay -->
+  <div id="tapMessage" style="
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255,255,255,0.85);
+    padding: 1.5rem 2.5rem;
+    border-radius: 1rem;
+    font-family: 'Amatic SC', cursive;
+    font-size: 2rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    z-index: 1000;
+  ">
+    Tap anywhere to begin ✨🎵
+  </div>
+
+  <!-- 🎵 Worship Music -->
   <audio id="bgMusic" loop muted>
     <source src="morning-worship-180330.mp3" type="audio/mpeg" />
   </audio>
@@ -41,7 +58,6 @@
   <button class="music-button" onclick="toggleMusic()">🔊</button>
   <button class="nature-button" onclick="toggleNature()">🌿</button>
 
- 
   <!-- 💖 App Container -->
   <main class="container fade-in">
     <h1 class="title">SoulNotes</h1>
@@ -61,25 +77,40 @@
     const natureSound = document.getElementById("natureSound");
     const tapMessage = document.getElementById("tapMessage");
 
-    // Set volumes
-    bgMusic.volume = 0.6;
-    natureSound.volume = 0.4;
+    // Set initial volume (0 for fade-in)
+    bgMusic.volume = 0;
+    natureSound.volume = 0;
 
-    // Try autoplay (muted)
+    // Try autoplay silently on load
     window.addEventListener("load", () => {
       bgMusic.play().catch(e => console.log("Autoplay blocked:", e));
       natureSound.play().catch(e => console.log("Autoplay blocked:", e));
     });
 
-    // Enable audio and unmute on first user interaction
+    // Enable audio + fade in on first click
     function enableAudioOnce() {
       bgMusic.muted = false;
       natureSound.muted = false;
-      bgMusic.play().catch(e => console.log("Tap play blocked:", e));
-      natureSound.play().catch(e => console.log("Tap play blocked:", e));
+      fadeIn(bgMusic, 0.6, 3000);       // 3s fade to 0.6 volume
+      fadeIn(natureSound, 0.4, 3000);   // 3s fade to 0.4 volume
       tapMessage.style.display = "none";
     }
     document.addEventListener("click", enableAudioOnce, { once: true });
+
+    // Fade in function
+    function fadeIn(audio, targetVolume, duration) {
+      let step = 50;
+      let increment = targetVolume / (duration / step);
+      audio.volume = 0;
+      let interval = setInterval(() => {
+        if (audio.volume < targetVolume - 0.01) {
+          audio.volume = Math.min(audio.volume + increment, targetVolume);
+        } else {
+          audio.volume = targetVolume;
+          clearInterval(interval);
+        }
+      }, step);
+    }
 
     // Toggle functions
     let isMusicPlaying = true;
