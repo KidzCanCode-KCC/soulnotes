@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,12 +27,12 @@
   <div class="sparkle"></div>
   <div class="sparkle"></div>
 
-  <!-- 🎵 Worship Music (Muted to allow autoplay) -->
+  <!-- 🎵 Worship Music (Your MP3 file) -->
   <audio id="bgMusic" loop muted>
-    <source src="https://cdn.pixabay.com/download/audio/2022/10/27/audio_734cbca446.mp3?filename=hopeful-soul-ambient-piano-12288.mp3" type="audio/mpeg" />
+    <source src="morning-worship-180330.mp3" type="audio/mpeg" />
   </audio>
 
-  <!-- 🌿 Nature Sounds (Muted to allow autoplay) -->
+  <!-- 🌿 Nature Sounds -->
   <audio id="natureSound" loop muted>
     <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_7b8b6f7e10.mp3" type="audio/mpeg" />
   </audio>
@@ -42,22 +41,7 @@
   <button class="music-button" onclick="toggleMusic()">🔊</button>
   <button class="nature-button" onclick="toggleNature()">🌿</button>
 
-  <!-- 👆 Tap Message Overlay -->
-  <div id="tapMessage" style="
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: rgba(255,255,255,0.8);
-    padding: 1rem 2rem;
-    border-radius: 1rem;
-    font-family: 'Amatic SC', cursive;
-    font-size: 2rem;
-    z-index: 999;
-  ">
-    Tap anywhere to start music 🎵
-  </div>
-
+ 
   <!-- 💖 App Container -->
   <main class="container fade-in">
     <h1 class="title">SoulNotes</h1>
