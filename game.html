@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SoulNotes - Verse Memory Game</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .game-box {
+      margin-top: 2rem;
+    }
+    .question {
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+    }
+    .options button {
+      display: block;
+      margin: 0.5rem auto;
+      padding: 0.8rem 1.5rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container fade-in">
+    <h1>Verse Memory Game</h1>
+    <div class="game-box">
+      <div class="question" id="question"></div>
+      <div class="options" id="options"></div>
+    </div>
+    <button onclick="startGame()" class="button" style="margin-top: 2rem;">New Question</button>
+    <button onclick="window.location.href='index.html'" class="button">Back to Home</button>
+  </div>
+
+  <script>
+    const moods = {
+      "anxious": "Philippians 4:6",
+      "joyful": "Psalm 100:1",
+      "lonely": "Deuteronomy 31:6",
+      "grateful": "Colossians 3:15",
+      "tired": "Matthew 11:28",
+      "confused": "Proverbs 3:5-6",
+      "hopeful": "Romans 15:13",
+      "frustrated": "Psalm 37:7",
+      "afraid": "Isaiah 41:10",
+      "overwhelmed": "Psalm 61:2",
+      "peaceful": "John 14:27",
+      "motivated": "Philippians 4:13",
+      "bored": "Ecclesiastes 3:1",
+      "angry": "James 1:19",
+      "thankful": "1 Thessalonians 5:18",
+      "guilty": "1 John 1:9"
+    };
+
+    function startGame() {
+      const keys = Object.keys(moods);
+      const randomIndex = Math.floor(Math.random() * keys.length);
+      const correctMood = keys[randomIndex];
+      const correctVerse = moods[correctMood];
+
+      document.getElementById("question").textContent = `Which mood goes with the verse: ${correctVerse}?`;
+
+      const shuffled = keys.sort(() => 0.5 - Math.random()).slice(0, 3);
+      if (!shuffled.includes(correctMood)) shuffled[0] = correctMood;
+      shuffled.sort(() => 0.5 - Math.random());
+
+      const optionsDiv = document.getElementById("options");
+      optionsDiv.innerHTML = "";
+      shuffled.forEach(option => {
+        const btn = document.createElement("button");
+        btn.className = "button";
+        btn.textContent = option.charAt(0).toUpperCase() + option.slice(1);
+        btn.onclick = () => {
+          if (option === correctMood) {
+            alert("✅ Correct!");
+          } else {
+            alert(`❌ Oops! It was '${correctMood}'.`);
+          }
+        };
+        optionsDiv.appendChild(btn);
+      });
+    }
+  </script>
+</body>
+</html>
