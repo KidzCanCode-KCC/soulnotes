@@ -24,7 +24,28 @@
     </div>
 
     <textarea id="journal-entry" placeholder="Write your prayer or reflection..."></textarea>
-  <button onclick="window.location.href='index.html'" class="button" style="margin-top: 2rem;">Done</button>
+
+    <div class="output-box">
+      <h2>🙏 Prayer Requests</h2>
+      <input type="text" id="prayer-input" placeholder="Type a prayer request...">
+      <button class="button" onclick="addPrayer()">Add</button>
+      <ul id="prayer-list"></ul>
+    </div>
+
+    <div class="output-box">
+      <h2>✨ Gratitude Prompt</h2>
+      <p>Write 3 things you're thankful for today:</p>
+      <input type="text" class="gratitude" placeholder="1.">
+      <input type="text" class="gratitude" placeholder="2.">
+      <input type="text" class="gratitude" placeholder="3.">
+    </div>
+
+    <div id="music-box" class="output-box hidden">
+      <h2>🎵 Worship Songs</h2>
+      <ul id="music-suggestions"></ul>
+    </div>
+
+    <button onclick="window.location.href='index.html'" class="button" style="margin-top: 2rem;">Done</button>
   </div>
 
   <script src="moods.js"></script>
