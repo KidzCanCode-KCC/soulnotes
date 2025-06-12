@@ -1,7 +1,7 @@
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(135deg, #fceff9, #e0f7fa, #fff6e5);
+  background: linear-gradient(135deg, #f7e7b4, #b8dbd3, #96ead7);
   background-size: 400% 400%;
   animation: gradientBG 20s ease infinite;
   color: #333;
@@ -74,7 +74,7 @@ textarea, input[type="text"] {
 .output-box {
   text-align: left;
   margin-top: 1rem;
-  background: #fff5f8;
+  background: #f7e7b4;
   padding: 1rem;
   border-radius: 1rem;
   box-shadow: 0 2px 8px rgba(0,0,0,0.05);
