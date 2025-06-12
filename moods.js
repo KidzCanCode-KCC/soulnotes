@@ -12,7 +12,7 @@ const moods = {
   "lonely": {
     "verse": "Deuteronomy 31:6",
     "advice": "You are never truly alone. God walks with you.",
-    "songs": ["You Are Not Alone – Michael Jackson", "Never Alone – Tori Kelly"]
+    "songs": ["Never Alone - Hillsong Young & Free", "Never – Tasha Layton"]
   },
   "grateful": {
     "verse": "Colossians 3:15",
