@@ -8,115 +8,40 @@
   <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
 </head>
 
+<body>
   <!-- ☁️ Clouds -->
   <div class="cloud cloud1"></div>
   <div class="cloud cloud2"></div>
   <div class="cloud cloud3"></div>
 
-<!-- ✝ Glowing Cross -->
+  <!-- ✝ Glowing Cross -->
   <div class="glow-cross">✝</div>
 
-<!-- 📖 Bible Verse Slideshow -->
+  <!-- 📖 Bible Verse Slideshow -->
   <div class="verse-slideshow" id="verseBox">"Be still and know that I am God." - Psalm 46:10</div>
 
-<!-- ✨ Sparkle Elements -->
+  <!-- ✨ Sparkle Elements -->
   <div class="sparkle"></div>
   <div class="sparkle"></div>
   <div class="sparkle"></div>
   <div class="sparkle"></div>
   <div class="sparkle"></div>
 
-<!-- 🎵 Background Worship Music -->
-<audio id="bgMusic" autoplay loop>
-  <source src="music/worship.mp3" type="audio/mpeg" />
-</audio>
+  <!-- 🎵 Worship Music -->
+  <audio id="bgMusic" loop>
+    <source src="music/worship.mp3" type="audio/mpeg" />
+  </audio>
 
-<!-- 🌿 Nature Sounds -->
-<audio id="natureSound" autoplay loop>
-  <source src="music/nature.mp3" type="audio/mpeg" />
-</audio>
+  <!-- 🌿 Nature Sounds -->
+  <audio id="natureSound" loop>
+    <source src="music/nature.mp3" type="audio/mpeg" />
+  </audio>
 
-<!-- 🎛️ Toggle Buttons -->
-<button class="music-button" onclick="toggleMusic()">🔊</button>
-<button class="nature-button" onclick="toggleNature()">🌿</button>
+  <!-- 🔘 Toggle Buttons -->
+  <button class="music-button" onclick="toggleMusic()">🔊</button>
+  <button class="nature-button" onclick="toggleNature()">🌿</button>
 
-<script>
-  // MUSIC TOGGLE
-  const music = document.getElementById("bgMusic");
-  let isMusicPlaying = true;
-  function toggleMusic() {
-    isMusicPlaying ? music.pause() : music.play();
-    document.querySelector('.music-button').innerText = isMusicPlaying ? '🔈' : '🔊';
-    isMusicPlaying = !isMusicPlaying;
-  }
-
-  // NATURE SOUND TOGGLE
-  const nature = document.getElementById("natureSound");
-  let isNaturePlaying = true;
-  function toggleNature() {
-    isNaturePlaying ? nature.pause() : nature.play();
-    document.querySelector('.nature-button').innerText = isNaturePlaying ? '🌱' : '🌿';
-    isNaturePlaying = !isNaturePlaying;
-  }
-
-  // VERSE SLIDESHOW
-  const verses = [
-    '"Be still and know that I am God." - Psalm 46:10',
-    '"I can do all things through Christ who strengthens me." - Philippians 4:13',
-    '"The joy of the Lord is your strength." - Nehemiah 8:10',
-    '"When I am afraid, I put my trust in You." - Psalm 56:3',
-    '"Cast all your anxiety on Him because He cares for you." - 1 Peter 5:7'
-  ];
-  let currentVerse = 0;
-  setInterval(() => {
-    currentVerse = (currentVerse + 1) % verses.length;
-    document.getElementById("verseBox").innerText = verses[currentVerse];
-  }, 7000); // change every 7 seconds
-</script>
-
-  <!-- ✨ Tap-to-Play Message -->
-<div id="tapMessage" style="
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 1.5rem;
-  background: rgba(255, 255, 255, 0.9);
-  padding: 1rem 2rem;
-  border-radius: 1rem;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-  z-index: 9999;
-  text-align: center;
-  color: #333;
-  font-family: 'Segoe UI', sans-serif;">
-  🔊 Tap anywhere to begin the SoulNotes experience
-</div>
-
-<!-- ✝️ SoulNotes Script -->
-<script>
-  // Get audio elements
-  const bgMusic = document.getElementById("bgMusic");
-  const natureSound = document.getElementById("natureSound");
-  const tapMessage = document.getElementById("tapMessage");
-
-  // Function to play audio after user taps
-  function enableAudioOnce() {
-    if (bgMusic && natureSound) {
-      bgMusic.volume = 0.6;
-      natureSound.volume = 0.4;
-      bgMusic.play().catch(e => console.log("Music blocked:", e));
-      natureSound.play().catch(e => console.log("Sound blocked:", e));
-    }
-    if (tapMessage) tapMessage.style.display = "none";
-    document.body.removeEventListener("click", enableAudioOnce);
-  }
-
-  // Listen for click anywhere to enable music
-  document.body.addEventListener("click", enableAudioOnce);
-</script>
-
-
-<body>
+  <!-- 💖 App Container -->
   <main class="container fade-in">
     <h1 class="title">SoulNotes</h1>
     <p class="subtitle">Reflect your heart. Renew your spirit. 💖</p>
@@ -128,5 +53,74 @@
       <a href="game.html" class="button">Verse Memory Game</a>
     </div>
   </main>
+
+  <!-- ✨ Tap-to-Play Message -->
+  <div id="tapMessage" style="
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.5rem;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 1rem 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    z-index: 9999;
+    text-align: center;
+    color: #333;
+    font-family: 'Segoe UI', sans-serif;">
+    🔊 Tap anywhere to begin the SoulNotes experience
+  </div>
+
+  <!-- 💡 SCRIPT -->
+  <script>
+    // AUDIO CONTROLS
+    const bgMusic = document.getElementById("bgMusic");
+    const natureSound = document.getElementById("natureSound");
+    const tapMessage = document.getElementById("tapMessage");
+
+    function enableAudioOnce() {
+      if (bgMusic && natureSound) {
+        bgMusic.volume = 0.6;
+        natureSound.volume = 0.4;
+        bgMusic.play().catch(e => console.log("Music blocked:", e));
+        natureSound.play().catch(e => console.log("Nature sound blocked:", e));
+      }
+      if (tapMessage) tapMessage.style.display = "none";
+      document.body.removeEventListener("click", enableAudioOnce);
+    }
+
+    document.body.addEventListener("click", enableAudioOnce);
+
+    // TOGGLE BUTTONS
+    let isMusicPlaying = true;
+    let isNaturePlaying = true;
+
+    function toggleMusic() {
+      isMusicPlaying ? bgMusic.pause() : bgMusic.play();
+      document.querySelector('.music-button').innerText = isMusicPlaying ? '🔈' : '🔊';
+      isMusicPlaying = !isMusicPlaying;
+    }
+
+    function toggleNature() {
+      isNaturePlaying ? natureSound.pause() : natureSound.play();
+      document.querySelector('.nature-button').innerText = isNaturePlaying ? '🌱' : '🌿';
+      isNaturePlaying = !isNaturePlaying;
+    }
+
+    // VERSE SLIDESHOW
+    const verses = [
+      '"Be still and know that I am God." - Psalm 46:10',
+      '"I can do all things through Christ who strengthens me." - Philippians 4:13',
+      '"The joy of the Lord is your strength." - Nehemiah 8:10',
+      '"When I am afraid, I put my trust in You." - Psalm 56:3',
+      '"Cast all your anxiety on Him because He cares for you." - 1 Peter 5:7'
+    ];
+    let currentVerse = 0;
+    setInterval(() => {
+      currentVerse = (currentVerse + 1) % verses.length;
+      document.getElementById("verseBox").innerText = verses[currentVerse];
+    }, 7000);
+  </script>
 </body>
 </html>
