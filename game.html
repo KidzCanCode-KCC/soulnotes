@@ -5,31 +5,37 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>SoulNotes - Verse Memory Game</title>
   <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
     .game-box {
       margin-top: 2rem;
     }
     .question {
-      font-size: 1.1rem;
-      margin-bottom: 1rem;
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      color: #444;
     }
     .options button {
       display: block;
-      margin: 0.5rem auto;
-      padding: 0.8rem 1.5rem;
+      margin: 0.75rem auto;
+      padding: 0.8rem 2rem;
     }
   </style>
 </head>
 <body>
-  <div class="container fade-in">
-    <h1>Verse Memory Game</h1>
+  <main class="container fade-in">
+    <h1 class="title">🧠 Verse Memory Game</h1>
+    <p class="subtitle">Match the verse to the right mood!</p>
     <div class="game-box">
-      <div class="question" id="question"></div>
+      <div class="question" id="question">Click "New Question" to start!</div>
       <div class="options" id="options"></div>
     </div>
-    <button onclick="startGame()" class="button" style="margin-top: 2rem;">New Question</button>
-    <button onclick="window.location.href='index.html'" class="button">Back to Home</button>
-  </div>
+    <div style="margin-top: 2rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+      <button onclick="startGame()" class="button">🎲 New Question</button>
+      <a href="index.html" class="button">⬅ Back to Home</a>
+    </div>
+  </main>
 
   <script>
     const moods = {
@@ -53,27 +59,29 @@
 
     function startGame() {
       const keys = Object.keys(moods);
-      const randomIndex = Math.floor(Math.random() * keys.length);
-      const correctMood = keys[randomIndex];
+      const correctMood = keys[Math.floor(Math.random() * keys.length)];
       const correctVerse = moods[correctMood];
 
-      document.getElementById("question").textContent = `Which mood goes with the verse: ${correctVerse}?`;
+      document.getElementById("question").textContent = `Which mood goes with this verse: "${correctVerse}"?`;
 
-      const shuffled = keys.sort(() => 0.5 - Math.random()).slice(0, 3);
-      if (!shuffled.includes(correctMood)) shuffled[0] = correctMood;
-      shuffled.sort(() => 0.5 - Math.random());
+      const options = [...keys];
+      options.sort(() => 0.5 - Math.random());
+      const selected = options.slice(0, 3);
+      if (!selected.includes(correctMood)) selected[0] = correctMood;
+      selected.sort(() => 0.5 - Math.random());
 
       const optionsDiv = document.getElementById("options");
       optionsDiv.innerHTML = "";
-      shuffled.forEach(option => {
+
+      selected.forEach(option => {
         const btn = document.createElement("button");
         btn.className = "button";
         btn.textContent = option.charAt(0).toUpperCase() + option.slice(1);
         btn.onclick = () => {
           if (option === correctMood) {
-            alert("✅ Correct!");
+            alert("✅ Correct! You know your verses!");
           } else {
-            alert(`❌ Oops! Incorrect!`);
+            alert(`❌ Oops! That one was actually "${correctMood}".`);
           }
         };
         optionsDiv.appendChild(btn);
