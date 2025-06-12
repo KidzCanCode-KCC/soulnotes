@@ -1,13 +1,13 @@
-/* ===== Animated Pastel Gradient Background ===== */
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
-  background-image: url('images/clouds-bg.png');
-  background-size: cover;
+  background: linear-gradient(135deg, #f7e7b4, #b8dbd3, #96ead7), url('images/clouds-bg.png');
+  background-size: cover, 400% 400%;
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center center;
-  background-color: #f8f8f8; /* fallback */
+  background-color: #f8f8f8;
+  animation: gradientBG 20s ease infinite;
   color: #333;
   overflow-x: hidden;
   position: relative;
