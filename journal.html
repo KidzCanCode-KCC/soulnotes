@@ -5,48 +5,50 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>SoulNotes - Journal</title>
   <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="container fade-in">
-    <h1>Today's Mood</h1>
+  <main class="container fade-in">
+    <h1>📝 Today's Mood</h1>
+
     <select id="mood-select" class="dropdown">
       <option value="">Select a mood...</option>
     </select>
 
-    <div id="verse-box" class="output-box hidden">
+    <section id="verse-box" class="output-box hidden">
       <h2>📖 Verse</h2>
       <p id="verse-text"></p>
-    </div>
+    </section>
 
-    <div id="advice-box" class="output-box hidden">
+    <section id="advice-box" class="output-box hidden">
       <h2>💡 Advice</h2>
       <p id="advice-text"></p>
-    </div>
+    </section>
 
     <textarea id="journal-entry" placeholder="Write your prayer or reflection..."></textarea>
 
-    <div class="output-box">
+    <section class="output-box">
       <h2>🙏 Prayer Requests</h2>
       <input type="text" id="prayer-input" placeholder="Type a prayer request...">
       <button class="button" onclick="addPrayer()">Add</button>
       <ul id="prayer-list"></ul>
-    </div>
+    </section>
 
-    <div class="output-box">
+    <section class="output-box">
       <h2>✨ Gratitude Prompt</h2>
       <p>Write 3 things you're thankful for today:</p>
       <input type="text" class="gratitude" placeholder="1.">
       <input type="text" class="gratitude" placeholder="2.">
       <input type="text" class="gratitude" placeholder="3.">
-    </div>
+    </section>
 
-    <div id="music-box" class="output-box hidden">
+    <section id="music-box" class="output-box hidden">
       <h2>🎵 Worship Songs</h2>
       <ul id="music-suggestions"></ul>
-    </div>
+    </section>
 
-    <button onclick="window.location.href='index.html'" class="button" style="margin-top: 2rem;">Done</button>
-  </div>
+    <button onclick="window.location.href='index.html'" class="button" style="margin-top: 2rem;">✅ Done</button>
+  </main>
 
   <script src="moods.js"></script>
   <script src="script.js"></script>
