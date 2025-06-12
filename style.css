@@ -186,3 +186,55 @@ ul {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
+
+/* ===== Glowing Cross ===== */
+.glow-cross {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  font-size: 2.5rem;
+  color: #fff;
+  text-shadow:
+    0 0 5px #fff,
+    0 0 10px #96ead7,
+    0 0 20px #68c4af,
+    0 0 30px #b8dbd3;
+  animation: pulse 3s ease-in-out infinite;
+  z-index: 10;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.2); opacity: 0.8; }
+}
+
+/* ===== Background Music Button ===== */
+.music-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  font-size: 1.5rem;
+  background: rgba(255, 255, 255, 0.7);
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  box-shadow: 0 0 15px rgba(104, 196, 175, 0.4);
+  cursor: pointer;
+  transition: background 0.3s ease;
+  z-index: 10;
+}
+
+.music-button:hover {
+  background: rgba(184, 219, 211, 0.9);
+}
+
+a {
+  text-decoration: none;
+}
+
+
+a:hover {
+  text-decoration: underline;
+}
+
