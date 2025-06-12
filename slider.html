@@ -1,47 +1,51 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>How Are You Feeling?</title>
+  <title>SoulNotes - Mood Scale</title>
   <link rel="stylesheet" href="style.css" />
   <style>
-    .container {
-      max-width: 600px;
-      margin: 4rem auto;
-      padding: 2rem;
-      background: white;
-      border-radius: 1.5rem;
-      box-shadow: 0 15px 40px rgba(0,0,0,0.1);
-      text-align: center;
+    .scale-box {
+      margin-top: 2rem;
     }
-    input[type=range] {
-      width: 100%;
-      margin: 2rem 0;
-    }
-    #feelingValue {
-      font-size: 1.5rem;
-      font-weight: bold;
-      color: #444;
+    .scale-value {
+      font-size: 1.2rem;
+      margin-top: 1rem;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h2>How Are You Feeling Today?</h2>
-    <input type="range" min="0" max="10" step="1" id="feelingRange">
-    <p id="feelingValue">5</p>
-    <button class="button" onclick="window.location.href='index.html'">Back to Home</button>
+  <div class="container fade-in">
+    <h1>How are you feeling (1–10)?</h1>
+    <div class="scale-box">
+      <input type="range" min="1" max="10" value="5" id="scale-slider" class="dropdown" />
+      <div class="scale-value" id="scale-label">Mood Level: 5</div>
+    </div>
+    <textarea id="scale-note" placeholder="Why do you feel this way?"></textarea>
+    <button onclick="saveScaleNote()" class="button" style="margin-top: 1rem;">Save</button>
+    <button onclick="window.location.href='index.html'" class="button" style="margin-top: 1rem;">Back to Home</button>
   </div>
 
   <script>
-    const range = document.getElementById('feelingRange');
-    const value = document.getElementById('feelingValue');
-    value.textContent = range.value;
-    range.addEventListener('input', () => {
-      value.textContent = range.value;
+    const slider = document.getElementById("scale-slider");
+    const label = document.getElementById("scale-label");
+    const note = document.getElementById("scale-note");
+
+    slider.addEventListener("input", () => {
+      label.textContent = `Mood Level: ${slider.value}`;
     });
+
+    function saveScaleNote() {
+      const scale = slider.value;
+      const reason = note.value;
+      const entry = { scale, reason, date: new Date().toLocaleString() };
+      let history = JSON.parse(localStorage.getItem("moodHistory")) || [];
+      history.push(entry);
+      localStorage.setItem("moodHistory", JSON.stringify(history));
+      alert("Mood saved!");
+      note.value = "";
+    }
   </script>
 </body>
 </html>
