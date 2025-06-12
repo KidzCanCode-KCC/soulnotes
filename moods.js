@@ -215,3 +215,26 @@ const moods = {
     ]
   }
 };
+function showSongsForMood(moodName) {
+  const mood = moods[moodName];
+  const container = document.getElementById('songList');
+  container.innerHTML = ''; // Clear old songs
+
+  if (mood && mood.songs) {
+    mood.songs.forEach(song => {
+      const title = document.createElement('p');
+      title.textContent = song.title;
+
+      const iframe = document.createElement('iframe');
+      iframe.width = "300";
+      iframe.height = "170";
+      iframe.src = song.url;
+      iframe.frameBorder = "0";
+      iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+      iframe.allowFullscreen = true;
+
+      container.appendChild(title);
+      container.appendChild(iframe);
+    });
+  }
+}
