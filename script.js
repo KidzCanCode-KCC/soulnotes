@@ -96,3 +96,7 @@ function showSongsForMood(mood) {
     songList.appendChild(container);
   });
 }
+document.getElementById("moodSelect").addEventListener("change", function () {
+  const selectedMood = this.value;
+  showSongsForMood(selectedMood);
+});
