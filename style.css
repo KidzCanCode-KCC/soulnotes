@@ -1,32 +1,21 @@
-/* ===== Animated Pastel Gradient Background ===== */
+/* ===== Combined Cloud Background + Animated Gradient ===== */
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
-  background-image: url('images/clouds-bg.png');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position: center center;
-  background-color: #f8f8f8; /* fallback */
+  background-image:
+    url('images/clouds-bg.png'),
+    linear-gradient(135deg, #f7e7b4, #b8dbd3, #96ead7);
+  background-size: cover, 400% 400%;
+  background-repeat: no-repeat, no-repeat;
+  background-attachment: fixed, fixed;
+  background-position: center center, center center;
+  background-color: #f8f8f8;
+  animation: gradientBG 20s ease infinite;
   color: #333;
   overflow-x: hidden;
   position: relative;
 }
 
-/* Optional: Light overlay for better readability */
-body::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(255, 255, 255, 0.35); /* translucent white */
-  z-index: -1;
-  pointer-events: none;
-}
-
-/* ===== Dreamy Waves Layer 1 ===== */
 body::before {
   content: "";
   position: fixed;
@@ -42,7 +31,6 @@ body::before {
   opacity: 0.3;
 }
 
-/* ===== Second Wave Layer (slower) ===== */
 body::after {
   content: "";
   position: fixed;
@@ -58,31 +46,6 @@ body::after {
   opacity: 0.25;
 }
 
-/* ===== Sparkles Floating ===== */
-@keyframes sparkle {
-  0% { transform: translateY(0) scale(1); opacity: 1; }
-  100% { transform: translateY(-100vh) scale(0.5); opacity: 0; }
-}
-
-.sparkle {
-  position: fixed;
-  width: 10px;
-  height: 10px;
-  background: white;
-  border-radius: 50%;
-  opacity: 0.6;
-  animation: sparkle 10s linear infinite;
-  z-index: -1;
-}
-
-/* Add sparkles manually or with JS */
-.sparkle:nth-child(2) { left: 10%; animation-delay: 1s; }
-.sparkle:nth-child(3) { left: 30%; animation-delay: 2s; }
-.sparkle:nth-child(4) { left: 50%; animation-delay: 3s; }
-.sparkle:nth-child(5) { left: 70%; animation-delay: 4s; }
-.sparkle:nth-child(6) { left: 90%; animation-delay: 5s; }
-
-/* ===== Animations ===== */
 @keyframes gradientBG {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
@@ -99,249 +62,7 @@ body::after {
   100% { transform: translateX(-33%); }
 }
 
-/* ===== Container ===== */
-.container {
-  max-width: 600px;
-  margin: 60px auto;
-  padding: 2rem;
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 1.5rem;
-  box-shadow: 0 15px 45px rgba(0,0,0,0.1);
-  text-align: center;
-  backdrop-filter: blur(6px);
-  position: relative;
-  z-index: 1;
-  animation: fadeIn 1.5s ease-out;
-}
-
-/* ===== Headings ===== */
-.title {
-  font-size: 2.7rem;
-  color: #68c4af;
-  margin-bottom: 0.5rem;
-}
-
-.subtitle {
-  font-size: 1.2rem;
-  color: #888;
-  margin-bottom: 2rem;
-}
-
-/* ===== Buttons ===== */
-.nav {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.button {
-  background: #68c4af;
-  padding: 1rem 2rem;
-  border: none;
-  border-radius: 2rem;
-  font-size: 1rem;
-  color: #222;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-  transition: all 0.3s ease;
-  cursor: pointer;
-}
-
-.button:hover {
-  background: #b8dbd3;
-  transform: translateY(-4px);
-}
-
-/* ===== Inputs & Dropdowns ===== */
-textarea,
-input[type="text"],
-.dropdown {
-  width: 100%;
-  padding: 1rem;
-  margin: 1rem 0;
-  border-radius: 1rem;
-  border: 1px solid #ccc;
-  font-size: 1rem;
-  background: #fff;
-  box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
-  transition: 0.2s;
-}
-
-textarea:focus,
-input[type="text"]:focus,
-.dropdown:focus {
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(104, 196, 175, 0.3);
-}
-
-/* ===== Output Box ===== */
-.output-box {
-  text-align: left;
-  margin-top: 1rem;
-  background: #e8f4ea;
-  padding: 1rem;
-  border-radius: 1rem;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-}
-
-/* ===== Other Styles ===== */
-.hidden {
-  display: none;
-}
-
-ul {
-  list-style-type: disc;
-  padding-left: 1.5rem;
-  margin-top: 0.5rem;
-}
-
-.fade-in {
-  animation: fadeIn 1s ease-out;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* ===== Glowing Cross ===== */
-.glow-cross {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  font-size: 2.5rem;
-  color: #fff;
-  text-shadow:
-    0 0 5px #fff,
-    0 0 10px #96ead7,
-    0 0 20px #68c4af,
-    0 0 30px #b8dbd3;
-  animation: pulse 3s ease-in-out infinite;
-  z-index: 10;
-}
-
-@keyframes pulse {
-  0%, 100% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.2); opacity: 0.8; }
-}
-
-/* ===== Background Music Button ===== */
-.music-button {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  font-size: 1.5rem;
-  background: rgba(255, 255, 255, 0.7);
-  border: none;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  box-shadow: 0 0 15px rgba(104, 196, 175, 0.4);
-  cursor: pointer;
-  transition: background 0.3s ease;
-  z-index: 10;
-}
-
-.music-button:hover {
-  background: rgba(184, 219, 211, 0.9);
-}
-
-a {
-  text-decoration: none;
-}
-
-
-a:hover {
-  text-decoration: underline;
-}
-/* ✝ Glowing Cross */
-.glow-cross {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  font-size: 2.5rem;
-  color: #fff;
-  text-shadow: 0 0 5px #fff, 0 0 10px #96ead7, 0 0 20px #68c4af;
-  animation: pulse 3s ease-in-out infinite;
-  z-index: 10;
-}
-
-
-/* Sparkles */
-.sparkle {
-  position: absolute;
-  width: 6px;
-  height: 6px;
-  background: white;
-  border-radius: 50%;
-  animation: sparkleMove 10s linear infinite;
-  opacity: 0.6;
-}
-.sparkle:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
-.sparkle:nth-child(2) { top: 40%; left: 90%; animation-delay: 2s; }
-.sparkle:nth-child(3) { top: 70%; left: 30%; animation-delay: 4s; }
-.sparkle:nth-child(4) { top: 60%; left: 60%; animation-delay: 6s; }
-.sparkle:nth-child(5) { top: 80%; left: 80%; animation-delay: 8s; }
-
-@keyframes sparkleMove {
-  0% { transform: translateY(0) scale(1); }
-  50% { opacity: 0.8; }
-  100% { transform: translateY(-100vh) scale(1.5); opacity: 0; }
-}
-
-/* Background Animation */
-body {
-  background: linear-gradient(135deg, #f7e7b4, #b8dbd3, #96ead7);
-  background-size: 400% 400%;
-  animation: gradientBG 20s ease infinite;
-  margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  color: #333;
-}
-
-.verse-slideshow {
-  position: fixed;
-  top: 20px;
-  left: 20px;
-  font-size: 1.2rem;
-  font-style: italic;
-  background: rgba(255, 255, 255, 0.7);
-  padding: 0.75rem 1rem;
-  border-radius: 1rem;
-  box-shadow: 0 0 10px rgba(104, 196, 175, 0.3);
-  max-width: 300px;
-  z-index: 10;
-}
-
-/* Gradient animation */
-@keyframes gradientBG {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-/* Music/Nature Toggle Buttons */
-.music-button, .nature-button {
-  position: fixed;
-  bottom: 20px;
-  font-size: 1.5rem;
-  background: rgba(255, 255, 255, 0.8);
-  border: none;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  box-shadow: 0 0 15px rgba(104, 196, 175, 0.4);
-  cursor: pointer;
-  transition: background 0.3s ease;
-  z-index: 10;
-}
-.music-button { right: 20px; }
-.nature-button { right: 80px; }
-
-.music-button:hover, .nature-button:hover {
-  background: rgba(184, 219, 211, 1);
-}
-
-/* ☁️ Animated Clouds */
+/* ===== Cloud Animation ===== */
 .cloud {
   position: fixed;
   top: 50px;
@@ -358,7 +79,6 @@ body {
   height: 80px;
   left: -200px;
   animation-duration: 80s;
-  animation-delay: 0s;
 }
 
 .cloud2 {
@@ -383,6 +103,7 @@ body {
   0% { transform: translateX(0); }
   100% { transform: translateX(120vw); }
 }
+
 
 .button {
   background: #68c4af;
