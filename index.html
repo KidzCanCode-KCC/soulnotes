@@ -7,41 +7,66 @@
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
 </head>
-  <!-- ✨ Glowing Cross -->
+<!-- ✝ Glowing Cross -->
   <div class="glow-cross">✝</div>
 
-<!-- ✨ Sparkle Elements (optional) -->
-  <div class="sparkle"></div>
+<!-- 📖 Bible Verse Slideshow -->
+  <div class="verse-slideshow" id="verseBox">"Be still and know that I am God." - Psalm 46:10</div>
+
+<!-- ✨ Sparkle Elements -->
   <div class="sparkle"></div>
   <div class="sparkle"></div>
   <div class="sparkle"></div>
   <div class="sparkle"></div>
   <div class="sparkle"></div>
 
-<!-- 🎵 Background Music -->
+<!-- 🎵 Background Worship Music -->
 <audio id="bgMusic" autoplay loop>
-  <source src="your-music-file.mp3" type="audio/mpeg" />
-  Your browser does not support the audio element.
+  <source src="music/worship.mp3" type="audio/mpeg" />
 </audio>
 
-<!-- 🎵 Music Toggle Button -->
+<!-- 🌿 Nature Sounds -->
+<audio id="natureSound" autoplay loop>
+  <source src="music/nature.mp3" type="audio/mpeg" />
+</audio>
+
+<!-- 🎛️ Toggle Buttons -->
 <button class="music-button" onclick="toggleMusic()">🔊</button>
+<button class="nature-button" onclick="toggleNature()">🌿</button>
 
 <script>
+  // MUSIC TOGGLE
   const music = document.getElementById("bgMusic");
-  let isPlaying = true;
+  let isMusicPlaying = true;
   function toggleMusic() {
-    if (isPlaying) {
-      music.pause();
-      document.querySelector('.music-button').innerText = '🔈';
-    } else {
-      music.play();
-      document.querySelector('.music-button').innerText = '🔊';
-    }
-    isPlaying = !isPlaying;
+    isMusicPlaying ? music.pause() : music.play();
+    document.querySelector('.music-button').innerText = isMusicPlaying ? '🔈' : '🔊';
+    isMusicPlaying = !isMusicPlaying;
   }
-</script>
 
+  // NATURE SOUND TOGGLE
+  const nature = document.getElementById("natureSound");
+  let isNaturePlaying = true;
+  function toggleNature() {
+    isNaturePlaying ? nature.pause() : nature.play();
+    document.querySelector('.nature-button').innerText = isNaturePlaying ? '🌱' : '🌿';
+    isNaturePlaying = !isNaturePlaying;
+  }
+
+  // VERSE SLIDESHOW
+  const verses = [
+    '"Be still and know that I am God." - Psalm 46:10',
+    '"I can do all things through Christ who strengthens me." - Philippians 4:13',
+    '"The joy of the Lord is your strength." - Nehemiah 8:10',
+    '"When I am afraid, I put my trust in You." - Psalm 56:3',
+    '"Cast all your anxiety on Him because He cares for you." - 1 Peter 5:7'
+  ];
+  let currentVerse = 0;
+  setInterval(() => {
+    currentVerse = (currentVerse + 1) % verses.length;
+    document.getElementById("verseBox").innerText = verses[currentVerse];
+  }, 7000); // change every 7 seconds
+</script>
 
 <body>
   <main class="container fade-in">
