@@ -325,5 +325,47 @@ body {
   background: rgba(184, 219, 211, 1);
 }
 
+/* ☁️ Animated Clouds */
+.cloud {
+  position: fixed;
+  top: 50px;
+  background: white;
+  border-radius: 50%;
+  opacity: 0.5;
+  filter: blur(4px);
+  z-index: 0;
+  animation: floatClouds linear infinite;
+}
+
+.cloud1 {
+  width: 150px;
+  height: 80px;
+  left: -200px;
+  animation-duration: 80s;
+  animation-delay: 0s;
+}
+
+.cloud2 {
+  width: 200px;
+  height: 100px;
+  left: -300px;
+  top: 100px;
+  animation-duration: 100s;
+  animation-delay: 10s;
+}
+
+.cloud3 {
+  width: 100px;
+  height: 60px;
+  left: -100px;
+  top: 200px;
+  animation-duration: 60s;
+  animation-delay: 20s;
+}
+
+@keyframes floatClouds {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(120vw); }
+}
 
 
