@@ -368,4 +368,25 @@ body {
   100% { transform: translateX(120vw); }
 }
 
+.button {
+  background: #68c4af;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 2rem;
+  font-size: 1rem;
+  color: #222;
+  box-shadow: 0 0 10px rgba(104, 196, 175, 0.3);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.button:hover {
+  background: #b8dbd3;
+  transform: translateY(-4px);
+  box-shadow:
+    0 0 10px #96ead7,
+    0 0 20px #b8dbd3,
+    0 0 30px rgba(104, 196, 175, 0.4);
+}
+
 
