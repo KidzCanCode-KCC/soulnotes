@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SoulNotes - Mood History</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .history-box {
+      text-align: left;
+      margin-top: 2rem;
+    }
+    .entry {
+      background: #fff5f8;
+      padding: 1rem;
+      border-radius: 1rem;
+      margin-bottom: 1rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+  </style>
+</head>
+<body>
+  <div class="container fade-in">
+    <h1>Mood History</h1>
+    <div id="history" class="history-box"></div>
+    <button onclick="window.location.href='index.html'" class="button">Back to Home</button>
+  </div>
+
+  <script>
+    const historyContainer = document.getElementById("history");
+    const history = JSON.parse(localStorage.getItem("moodHistory")) || [];
+
+    if (history.length === 0) {
+      historyContainer.innerHTML = "<p>No entries yet.</p>";
+    } else {
+      history.reverse().forEach(entry => {
+        const div = document.createElement("div");
+        div.className = "entry";
+        div.innerHTML = `
+          <strong>${entry.date}</strong><br />
+          Mood Level: ${entry.scale}<br />
+          Note: ${entry.reason || 'N/A'}
+        `;
+        historyContainer.appendChild(div);
+      });
+    }
+  </script>
+</body>
+</html>
