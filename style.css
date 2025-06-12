@@ -1,47 +1,61 @@
-/* Wavy Background Container */
+/* ===== Global Styles ===== */
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
   background: linear-gradient(135deg, #f7e7b4, #b8dbd3, #96ead7);
   background-size: 400% 400%;
-  animation: gradientBG 20s ease infinite;
+  animation: gradientBG 15s ease infinite;
   color: #333;
-  position: relative;
   overflow-x: hidden;
+  position: relative;
 }
 
+/* ===== Wavy Animated Background ===== */
 body::before {
   content: "";
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg"><path fill="%23f7e7b4" fill-opacity="1" d="M0,160L60,160C120,160,240,160,360,149.3C480,139,600,117,720,101.3C840,85,960,75,1080,90.7C1200,107,1320,149,1380,170.7L1440,192L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z"></path></svg>');
-  background-repeat: no-repeat;
+  width: 200%;
+  height: 100vh;
+  z-index: -2;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 1440 320' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%2396ead7' fill-opacity='1' d='M0,160L60,160C120,160,240,160,360,149.3C480,139,600,117,720,101.3C840,85,960,75,1080,90.7C1200,107,1320,149,1380,170.7L1440,192L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z'%3E%3C/path%3E%3C/svg%3E") repeat-x;
   background-size: cover;
-  animation: waveMove 10s ease-in-out infinite alternate;
-  z-index: -1;
-  opacity: 0.5;
+  animation: waveScroll 10s linear infinite;
+  opacity: 0.3;
 }
 
-@keyframes waveMove {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(-20px); }
+@keyframes waveScroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ===== Container Box ===== */
 .container {
   max-width: 600px;
   margin: 50px auto;
   padding: 2rem;
-  background: white;
+  background: rgba(255, 255, 255, 0.95);
   border-radius: 1.5rem;
-  box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+  box-shadow: 0 15px 45px rgba(0,0,0,0.1);
   text-align: center;
-  position: relative;
+  backdrop-filter: blur(6px);
   z-index: 1;
+  position: relative;
+  animation: fadeIn 1s ease-out;
 }
 
+/* ===== Titles ===== */
 .title {
   font-size: 2.5rem;
   color: #68c4af;
@@ -52,6 +66,7 @@ body::before {
   margin-bottom: 2rem;
 }
 
+/* ===== Navigation Buttons ===== */
 .nav {
   display: flex;
   flex-direction: column;
@@ -67,35 +82,38 @@ body::before {
   text-decoration: none;
   color: #222;
   box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-  transition: all 0.2s ease-in-out;
+  transition: all 0.3s ease-in-out;
   cursor: pointer;
 }
 
 .button:hover {
   background: #b8dbd3;
-  transform: translateY(-3px);
+  transform: translateY(-4px);
 }
 
-textarea, input[type="text"] {
+/* ===== Inputs & Dropdowns ===== */
+textarea,
+input[type="text"],
+.dropdown {
   width: 100%;
   padding: 1rem;
-  border-radius: 1rem;
-  border: 1px solid #ddd;
-  margin-top: 1rem;
-  font-size: 1rem;
-  resize: vertical;
-  box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
-}
-
-.dropdown {
-  padding: 1rem;
+  margin: 1rem 0;
   border-radius: 1rem;
   border: 1px solid #ccc;
   font-size: 1rem;
-  width: 100%;
-  margin: 1rem 0;
+  box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
+  background: #fff;
+  transition: box-shadow 0.2s ease;
 }
 
+textarea:focus,
+input[type="text"]:focus,
+.dropdown:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(104, 196, 175, 0.3);
+}
+
+/* ===== Output Box ===== */
 .output-box {
   text-align: left;
   margin-top: 1rem;
@@ -105,6 +123,7 @@ textarea, input[type="text"] {
   box-shadow: 0 2px 8px rgba(0,0,0,0.05);
 }
 
+/* ===== Utility Classes ===== */
 .hidden {
   display: none;
 }
@@ -115,17 +134,18 @@ ul {
   margin-top: 0.5rem;
 }
 
-@keyframes gradientBG {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
+/* ===== Animations ===== */
 .fade-in {
   animation: fadeIn 1s ease-out;
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
