@@ -27,7 +27,7 @@ const moods = {
   "content": {
     verse: "Philippians 4:11-12",
     advice: "Find joy and peace in your current circumstances.",
-    songs: ["Goodness of God - Bethel Music", "It Is Well With My Soul - Hymn"]
+    songs: ["Goodness of God - Bethel Music", "It Is Well With My Soul - Hymn", "Million Little Miracles - Elevation Worship & Maverick City"]
   },
   "discouraged": {
     verse: "Isaiah 40:31",
@@ -79,6 +79,11 @@ const moods = {
     advice: "You are never truly alone. God walks with you.",
     songs: ["Never Alone - Hillsong Young & Free", "Never - Tasha Layton"]
   },
+   "loved": {
+    verse: "Romans 5:8",
+    advice: "Embrace it, and let it flow out to others, showing compassion and kindness, just as God shows it to you. ",
+    songs: ["Love Of God - Phil Wickman", "Reckless Love - Bethel Music", "Unending Love - Jadwin Gillies"]
+  },
   "motivated": {
     verse: "Philippians 4:13",
     advice: "You’ve got this, with strength from above.",
@@ -87,7 +92,7 @@ const moods = {
   "overwhelmed": {
     verse: "Psalm 61:2",
     advice: "When your heart is faint, lead it to the Rock.",
-    songs: ["Overwhelmed - Big Daddy Weave", "Even If - MercyMe", "In Jesus Name - Katy Nichole"]
+    songs: ["Overwhelmed - Big Daddy Weave", "Even If - MercyMe", "In Jesus Name - Katy Nichole", "Be Alright - Evan Craft, Danny Gokey, Redimi2"]
   },
   "peaceful": {
     verse: "John 14:27",
@@ -107,7 +112,7 @@ const moods = {
   "sad": {
     verse: "Psalm 34:18",
     advice: "He is close to the brokenhearted. Lean on Him.",
-    songs: ["Thy Will - Hillary Scott", "Even When It Hurts - Hillsong UNITED", "It Is Well (Through It All) - Bethel Music"]
+    songs: ["Thy Will - Hillary Scott", "Even When It Hurts - Hillsong UNITED", "It Is Well (Through It All) - Bethel Music", "Work It Out - ABLAZE"]
   },
   "strong": {
     verse: "Philippians 4:13",
