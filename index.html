@@ -75,54 +75,67 @@
   </div>
 
   <!-- 💡 SCRIPT -->
-  <script>
-    // AUDIO CONTROLS
-    const bgMusic = document.getElementById("bgMusic");
-    const natureSound = document.getElementById("natureSound");
-    const tapMessage = document.getElementById("tapMessage");
+<script>
+  const bgMusic = document.getElementById("bgMusic");
+  const natureSound = document.getElementById("natureSound");
+  const tapMessage = document.getElementById("tapMessage");
 
-    function enableAudioOnce() {
-      if (bgMusic && natureSound) {
-        bgMusic.volume = 0.6;
-        natureSound.volume = 0.4;
-        bgMusic.play().catch(e => console.log("Music blocked:", e));
-        natureSound.play().catch(e => console.log("Nature sound blocked:", e));
-      }
-      if (tapMessage) tapMessage.style.display = "none";
-      document.body.removeEventListener("click", enableAudioOnce);
+  // PLAY ON LOAD (if browser allows)
+  window.addEventListener("load", () => {
+    bgMusic.volume = 0.6;
+    natureSound.volume = 0.4;
+    bgMusic.play().catch(e => console.log("Autoplay blocked:", e));
+    natureSound.play().catch(e => console.log("Autoplay blocked:", e));
+  });
+
+  // ENABLE ON TAP ANYWHERE
+  function enableAudioOnce() {
+    bgMusic.play().catch(e => console.log("Tap play blocked:", e));
+    natureSound.play().catch(e => console.log("Tap play blocked:", e));
+    tapMessage.style.display = "none";
+  }
+  document.addEventListener("click", enableAudioOnce, { once: true });
+
+  // TOGGLE CONTROLS
+  let isMusicPlaying = true;
+  let isNaturePlaying = true;
+
+  function toggleMusic() {
+    if (isMusicPlaying) {
+      bgMusic.pause();
+      document.querySelector('.music-button').innerText = '🔈';
+    } else {
+      bgMusic.play().catch(e => console.log("Toggle play blocked:", e));
+      document.querySelector('.music-button').innerText = '🔊';
     }
+    isMusicPlaying = !isMusicPlaying;
+  }
 
-    document.body.addEventListener("click", enableAudioOnce);
-
-    // TOGGLE BUTTONS
-    let isMusicPlaying = true;
-    let isNaturePlaying = true;
-
-    function toggleMusic() {
-      isMusicPlaying ? bgMusic.pause() : bgMusic.play();
-      document.querySelector('.music-button').innerText = isMusicPlaying ? '🔈' : '🔊';
-      isMusicPlaying = !isMusicPlaying;
+  function toggleNature() {
+    if (isNaturePlaying) {
+      natureSound.pause();
+      document.querySelector('.nature-button').innerText = '🌱';
+    } else {
+      natureSound.play().catch(e => console.log("Toggle play blocked:", e));
+      document.querySelector('.nature-button').innerText = '🌿';
     }
+    isNaturePlaying = !isNaturePlaying;
+  }
 
-    function toggleNature() {
-      isNaturePlaying ? natureSound.pause() : natureSound.play();
-      document.querySelector('.nature-button').innerText = isNaturePlaying ? '🌱' : '🌿';
-      isNaturePlaying = !isNaturePlaying;
-    }
+  // VERSE SLIDESHOW
+  const verses = [
+    '"Be still and know that I am God." - Psalm 46:10',
+    '"I can do all things through Christ who strengthens me." - Philippians 4:13',
+    '"The joy of the Lord is your strength." - Nehemiah 8:10',
+    '"When I am afraid, I put my trust in You." - Psalm 56:3',
+    '"Cast all your anxiety on Him because He cares for you." - 1 Peter 5:7'
+  ];
+  let currentVerse = 0;
+  setInterval(() => {
+    currentVerse = (currentVerse + 1) % verses.length;
+    document.getElementById("verseBox").innerText = verses[currentVerse];
+  }, 7000);
+</script>
 
-    // VERSE SLIDESHOW
-    const verses = [
-      '"Be still and know that I am God." - Psalm 46:10',
-      '"I can do all things through Christ who strengthens me." - Philippians 4:13',
-      '"The joy of the Lord is your strength." - Nehemiah 8:10',
-      '"When I am afraid, I put my trust in You." - Psalm 56:3',
-      '"Cast all your anxiety on Him because He cares for you." - 1 Peter 5:7'
-    ];
-    let currentVerse = 0;
-    setInterval(() => {
-      currentVerse = (currentVerse + 1) % verses.length;
-      document.getElementById("verseBox").innerText = verses[currentVerse];
-    }, 7000);
-  </script>
 </body>
 </html>
