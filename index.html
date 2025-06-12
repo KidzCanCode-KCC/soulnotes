@@ -6,6 +6,15 @@
   <title>SoulNotes - Home</title>
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      opacity: 0;
+      transition: opacity 2s ease-in;
+    }
+    body.fade-in {
+      opacity: 1;
+    }
+  </style>
 </head>
 
 <body>
@@ -27,23 +36,6 @@
   <div class="sparkle"></div>
   <div class="sparkle"></div>
 
-  <!-- 👆 Tap Message Overlay -->
-  <div id="tapMessage" style="
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: rgba(255,255,255,0.85);
-    padding: 1.5rem 2.5rem;
-    border-radius: 1rem;
-    font-family: 'Amatic SC', cursive;
-    font-size: 2rem;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    z-index: 1000;
-  ">
-    Tap anywhere to begin ✨🎵
-  </div>
-
   <!-- 🎵 Worship Music -->
   <audio id="bgMusic" loop muted>
     <source src="morning-worship-180330.mp3" type="audio/mpeg" />
@@ -59,7 +51,7 @@
   <button class="nature-button" onclick="toggleNature()">🌿</button>
 
   <!-- 💖 App Container -->
-  <main class="container fade-in">
+  <main class="container">
     <h1 class="title">SoulNotes</h1>
     <p class="subtitle">Reflect your heart. Renew your spirit. 💖</p>
     <div class="nav">
@@ -71,48 +63,30 @@
     </div>
   </main>
 
-  <!-- 💡 SCRIPT -->
   <script>
-    const bgMusic = document.getElementById("bgMusic");
-    const natureSound = document.getElementById("natureSound");
-    const tapMessage = document.getElementById("tapMessage");
-
-    // Set initial volume (0 for fade-in)
-    bgMusic.volume = 0;
-    natureSound.volume = 0;
-
-    // Try autoplay silently on load
+    // Fade in the body
     window.addEventListener("load", () => {
-      bgMusic.play().catch(e => console.log("Autoplay blocked:", e));
-      natureSound.play().catch(e => console.log("Autoplay blocked:", e));
+      document.body.classList.add("fade-in");
+
+      // Try autoplay muted
+      document.getElementById("bgMusic").play().catch(e => console.log("Music autoplay blocked:", e));
+      document.getElementById("natureSound").play().catch(e => console.log("Nature autoplay blocked:", e));
     });
 
-    // Enable audio + fade in on first click
-    function enableAudioOnce() {
+    const bgMusic = document.getElementById("bgMusic");
+    const natureSound = document.getElementById("natureSound");
+
+    bgMusic.volume = 0.6;
+    natureSound.volume = 0.4;
+
+    // Enable audio on first click
+    document.addEventListener("click", () => {
       bgMusic.muted = false;
       natureSound.muted = false;
-      fadeIn(bgMusic, 0.6, 3000);       // 3s fade to 0.6 volume
-      fadeIn(natureSound, 0.4, 3000);   // 3s fade to 0.4 volume
-      tapMessage.style.display = "none";
-    }
-    document.addEventListener("click", enableAudioOnce, { once: true });
+      bgMusic.play().catch(e => console.log("Play blocked:", e));
+      natureSound.play().catch(e => console.log("Play blocked:", e));
+    }, { once: true });
 
-    // Fade in function
-    function fadeIn(audio, targetVolume, duration) {
-      let step = 50;
-      let increment = targetVolume / (duration / step);
-      audio.volume = 0;
-      let interval = setInterval(() => {
-        if (audio.volume < targetVolume - 0.01) {
-          audio.volume = Math.min(audio.volume + increment, targetVolume);
-        } else {
-          audio.volume = targetVolume;
-          clearInterval(interval);
-        }
-      }, step);
-    }
-
-    // Toggle functions
     let isMusicPlaying = true;
     let isNaturePlaying = true;
 
@@ -138,7 +112,7 @@
       isNaturePlaying = !isNaturePlaying;
     }
 
-    // Verse slideshow
+    // Bible Verse Slideshow
     const verses = [
       '"Be still and know that I am God." - Psalm 46:10',
       '"I can do all things through Christ who strengthens me." - Philippians 4:13',
