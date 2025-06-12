@@ -74,3 +74,25 @@ function addPrayer() {
     input.value = "";
   }
 }
+function showSongsForMood(mood) {
+  const moodData = moods[mood];
+  if (!moodData) return;
+
+  // Show verse and advice
+  document.getElementById("moodVerse").textContent = `Verse: ${moodData.verse}`;
+  document.getElementById("moodAdvice").textContent = `Advice: ${moodData.advice}`;
+
+  // Clear previous song list
+  const songList = document.getElementById("songList");
+  songList.innerHTML = "";
+
+  // Add each song as an embedded YouTube video
+  moodData.songs.forEach(song => {
+    const container = document.createElement("div");
+    container.innerHTML = `
+      <p>${song.title}</p>
+      <iframe width="300" height="170" src="${song.url}" frameborder="0" allowfullscreen></iframe>
+    `;
+    songList.appendChild(container);
+  });
+}
