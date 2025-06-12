@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,21 +28,35 @@
   <div class="sparkle"></div>
   <div class="sparkle"></div>
 
-  <!-- 🎵 Worship Music -->
-  <audio id="bgMusic" loop>
-  <source src="https://cdn.pixabay.com/download/audio/2022/10/27/audio_734cbca446.mp3?filename=hopeful-soul-ambient-piano-12288.mp3" type="audio/mpeg" />
-</audio>
+  <!-- 🎵 Worship Music (Muted to allow autoplay) -->
+  <audio id="bgMusic" loop muted>
+    <source src="https://cdn.pixabay.com/download/audio/2022/10/27/audio_734cbca446.mp3?filename=hopeful-soul-ambient-piano-12288.mp3" type="audio/mpeg" />
+  </audio>
 
-
-  <!-- 🌿 Nature Sounds -->
-<audio id="natureSound" loop>
-  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_7b8b6f7e10.mp3" type="audio/mpeg" />
-</audio>
-
+  <!-- 🌿 Nature Sounds (Muted to allow autoplay) -->
+  <audio id="natureSound" loop muted>
+    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_7b8b6f7e10.mp3" type="audio/mpeg" />
+  </audio>
 
   <!-- 🔘 Toggle Buttons -->
   <button class="music-button" onclick="toggleMusic()">🔊</button>
   <button class="nature-button" onclick="toggleNature()">🌿</button>
+
+  <!-- 👆 Tap Message Overlay -->
+  <div id="tapMessage" style="
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255,255,255,0.8);
+    padding: 1rem 2rem;
+    border-radius: 1rem;
+    font-family: 'Amatic SC', cursive;
+    font-size: 2rem;
+    z-index: 999;
+  ">
+    Tap anywhere to start music 🎵
+  </div>
 
   <!-- 💖 App Container -->
   <main class="container fade-in">
@@ -57,67 +72,70 @@
   </main>
 
   <!-- 💡 SCRIPT -->
-<script>
-  const bgMusic = document.getElementById("bgMusic");
-  const natureSound = document.getElementById("natureSound");
-  const tapMessage = document.getElementById("tapMessage");
+  <script>
+    const bgMusic = document.getElementById("bgMusic");
+    const natureSound = document.getElementById("natureSound");
+    const tapMessage = document.getElementById("tapMessage");
 
-  // PLAY ON LOAD (if browser allows)
-  window.addEventListener("load", () => {
+    // Set volumes
     bgMusic.volume = 0.6;
     natureSound.volume = 0.4;
-    bgMusic.play().catch(e => console.log("Autoplay blocked:", e));
-    natureSound.play().catch(e => console.log("Autoplay blocked:", e));
-  });
 
-  // ENABLE ON TAP ANYWHERE
-  function enableAudioOnce() {
-    bgMusic.play().catch(e => console.log("Tap play blocked:", e));
-    natureSound.play().catch(e => console.log("Tap play blocked:", e));
-    tapMessage.style.display = "none";
-  }
-  document.addEventListener("click", enableAudioOnce, { once: true });
+    // Try autoplay (muted)
+    window.addEventListener("load", () => {
+      bgMusic.play().catch(e => console.log("Autoplay blocked:", e));
+      natureSound.play().catch(e => console.log("Autoplay blocked:", e));
+    });
 
-  // TOGGLE CONTROLS
-  let isMusicPlaying = true;
-  let isNaturePlaying = true;
-
-  function toggleMusic() {
-    if (isMusicPlaying) {
-      bgMusic.pause();
-      document.querySelector('.music-button').innerText = '🔈';
-    } else {
-      bgMusic.play().catch(e => console.log("Toggle play blocked:", e));
-      document.querySelector('.music-button').innerText = '🔊';
+    // Enable audio and unmute on first user interaction
+    function enableAudioOnce() {
+      bgMusic.muted = false;
+      natureSound.muted = false;
+      bgMusic.play().catch(e => console.log("Tap play blocked:", e));
+      natureSound.play().catch(e => console.log("Tap play blocked:", e));
+      tapMessage.style.display = "none";
     }
-    isMusicPlaying = !isMusicPlaying;
-  }
+    document.addEventListener("click", enableAudioOnce, { once: true });
 
-  function toggleNature() {
-    if (isNaturePlaying) {
-      natureSound.pause();
-      document.querySelector('.nature-button').innerText = '🌱';
-    } else {
-      natureSound.play().catch(e => console.log("Toggle play blocked:", e));
-      document.querySelector('.nature-button').innerText = '🌿';
+    // Toggle functions
+    let isMusicPlaying = true;
+    let isNaturePlaying = true;
+
+    function toggleMusic() {
+      if (isMusicPlaying) {
+        bgMusic.pause();
+        document.querySelector('.music-button').innerText = '🔈';
+      } else {
+        bgMusic.play().catch(e => console.log("Toggle play blocked:", e));
+        document.querySelector('.music-button').innerText = '🔊';
+      }
+      isMusicPlaying = !isMusicPlaying;
     }
-    isNaturePlaying = !isNaturePlaying;
-  }
 
-  // VERSE SLIDESHOW
-  const verses = [
-    '"Be still and know that I am God." - Psalm 46:10',
-    '"I can do all things through Christ who strengthens me." - Philippians 4:13',
-    '"The joy of the Lord is your strength." - Nehemiah 8:10',
-    '"When I am afraid, I put my trust in You." - Psalm 56:3',
-    '"Cast all your anxiety on Him because He cares for you." - 1 Peter 5:7'
-  ];
-  let currentVerse = 0;
-  setInterval(() => {
-    currentVerse = (currentVerse + 1) % verses.length;
-    document.getElementById("verseBox").innerText = verses[currentVerse];
-  }, 7000);
-</script>
+    function toggleNature() {
+      if (isNaturePlaying) {
+        natureSound.pause();
+        document.querySelector('.nature-button').innerText = '🌱';
+      } else {
+        natureSound.play().catch(e => console.log("Toggle play blocked:", e));
+        document.querySelector('.nature-button').innerText = '🌿';
+      }
+      isNaturePlaying = !isNaturePlaying;
+    }
 
+    // Verse slideshow
+    const verses = [
+      '"Be still and know that I am God." - Psalm 46:10',
+      '"I can do all things through Christ who strengthens me." - Philippians 4:13',
+      '"The joy of the Lord is your strength." - Nehemiah 8:10',
+      '"When I am afraid, I put my trust in You." - Psalm 56:3',
+      '"Cast all your anxiety on Him because He cares for you." - 1 Peter 5:7'
+    ];
+    let currentVerse = 0;
+    setInterval(() => {
+      currentVerse = (currentVerse + 1) % verses.length;
+      document.getElementById("verseBox").innerText = verses[currentVerse];
+    }, 7000);
+  </script>
 </body>
 </html>
