@@ -7,12 +7,41 @@
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
 </head>
+  <!-- ✨ Glowing Cross -->
+  <div class="glow-cross">✝</div>
+
+<!-- ✨ Sparkle Elements (optional) -->
   <div class="sparkle"></div>
   <div class="sparkle"></div>
   <div class="sparkle"></div>
   <div class="sparkle"></div>
   <div class="sparkle"></div>
   <div class="sparkle"></div>
+
+<!-- 🎵 Background Music -->
+<audio id="bgMusic" autoplay loop>
+  <source src="your-music-file.mp3" type="audio/mpeg" />
+  Your browser does not support the audio element.
+</audio>
+
+<!-- 🎵 Music Toggle Button -->
+<button class="music-button" onclick="toggleMusic()">🔊</button>
+
+<script>
+  const music = document.getElementById("bgMusic");
+  let isPlaying = true;
+  function toggleMusic() {
+    if (isPlaying) {
+      music.pause();
+      document.querySelector('.music-button').innerText = '🔈';
+    } else {
+      music.play();
+      document.querySelector('.music-button').innerText = '🔊';
+    }
+    isPlaying = !isPlaying;
+  }
+</script>
+
 
 <body>
   <main class="container fade-in">
