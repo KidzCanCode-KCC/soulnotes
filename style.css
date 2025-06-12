@@ -1,14 +1,13 @@
 /* ===== Animated Pastel Gradient Background ===== */
 body {
-  margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(135deg, #f7e7b4, #b8dbd3, #96ead7);
-  background-size: 400% 400%;
-  animation: gradientBG 20s ease infinite;
-  color: #333;
-  overflow-x: hidden;
-  position: relative;
+  background-image: url('images/clouds-bg.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-color: #f8f8f8; /* fallback */
 }
+
 
 /* ===== Dreamy Waves Layer 1 ===== */
 body::before {
