@@ -19,7 +19,7 @@ body {
 
 .title {
   font-size: 2.5rem;
-  color: #191970;
+  color: #68c4af;
 }
 
 .subtitle {
@@ -34,7 +34,7 @@ body {
 }
 
 .button {
-  background: #191970;
+  background: #68c4af;
   padding: 1rem 2rem;
   border: none;
   border-radius: 2rem;
@@ -47,7 +47,7 @@ body {
 }
 
 .button:hover {
-  background: #ffc1cb;
+  background: #b8dbd3;
   transform: translateY(-3px);
 }
 
