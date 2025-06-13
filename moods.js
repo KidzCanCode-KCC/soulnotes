@@ -28,7 +28,7 @@ const moods = {
   "content": {
     verse: "Philippians 4:11-12",
     advice: "Find joy and peace in your current circumstances.",
-    songs: ["Goodness of God - Bethel Music", "It Is Well With My Soul - Hymn"]
+    songs: ["Goodness of God - Bethel Music", "It Is Well With My Soul - Hymn", "Jireh - Elevation Worship & Maverick City"]
   },
   "discouraged": {
     verse: "Isaiah 40:31",
