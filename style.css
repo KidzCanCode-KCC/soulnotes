@@ -384,3 +384,29 @@ a:hover {
     0 0 20px #b8dbd3,
     0 0 30px rgba(104, 196, 175, 0.4);
 }
+
+.soul-button {
+  display: block;
+  margin: 10px auto;
+  padding: 15px;
+  width: 80%;
+  background-color: #69c9b0;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 1.2rem;
+  text-align: center;
+  text-decoration: none;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.soul-button:hover {
+  background-color: #57b09c;
+  transform: translateY(-4px);
+  box-shadow:
+    0 0 10px #96ead7,
+    0 0 20px #b8dbd3,
+    0 0 30px rgba(104, 196, 175, 0.4);
+}
