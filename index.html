@@ -5,128 +5,62 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>SoulNotes - Home</title>
   <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
-  <style>
-    body {
-      opacity: 0;
-      transition: opacity 2s ease-in;
-    }
-    body.fade-in {
-      opacity: 1;
-    }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet" />
 </head>
-<h1 class="title">SoulNotes</h1>
-<p class="subtitle">Reflect your heart. Renew your spirit. 💖</p>
-
 <body>
-  <!-- ☁️ Clouds -->
-  <div class="cloud cloud1"></div>
-  <div class="cloud cloud2"></div>
-  <div class="cloud cloud3"></div>
-
-  <!-- ✝ Glowing Cross -->
+  <div class="verse-box" id="verseBox">Loading verse...</div>
   <div class="glow-cross">✝</div>
 
-  <!-- 📖 Bible Verse Slideshow -->
-  <div class="verse-slideshow" id="verseBox">"Be still and know that I am God." - Psalm 46:10</div>
+  <div class="main-container">
+    <h1 class="title">SoulNotes</h1>
+    <p class="subtitle">Reflect your heart. Renew your spirit. 💖</p>
+    
+    <div class="button-container">
+      <a href="slider.html" class="main-button">Go to Journal</a>
+      <a href="about.html" class="main-button">iAbout</a>
+      <a href="slider.html" class="main-button">Mood Scale (1–10)</a>
+      <a href="history.html" class="main-button">Mood History</a>
+      <a href="game.html" class="main-button">Verse Memory Game</a>
+    </div>
+  </div>
 
-  <!-- ✨ Sparkle Elements -->
-  <div class="sparkle"></div>
-  <div class="sparkle"></div>
-  <div class="sparkle"></div>
-  <div class="sparkle"></div>
-  <div class="sparkle"></div>
-
-  <!-- 🎵 Worship Music -->
-  <audio id="bgMusic" loop muted>
-    <source src="morning-worship-180330.mp3" type="audio/mpeg" />
-  </audio>
-
-  <!-- 🌿 Nature Sounds -->
-  <audio id="natureSound" loop muted>
-    <source src="birds39-forest-20772.mp3" type="audio/mpeg" />
-  </audio>
-
-  <!-- 🔘 Toggle Buttons -->
+  <button class="leaf-button">🌿</button>
   <button class="music-button" onclick="toggleMusic()">🔊</button>
-  <button class="nature-button" onclick="toggleNature()">🌿</button>
 
-  <!-- 💖 App Container -->
-<div class="button-container">
-  <a href="journal.html" class="button">Go to Journal</a>
-  <a href="about.html" class="button">iAbout</a>
-  <a href="slider.html" class="button">Mood Scale (1–10)</a>
-  <a href="history.html" class="button">Mood History</a>
-  <a href="game.html" class="button">Verse Memory Game</a>
-</div>
-
-
-
-  </main>
+ <!-- 🎵 Worship Music --> 
+  <audio id="bgMusic" loop muted> 
+    <source src="morning-worship-180330.mp3" type="audio/mpeg" />
+  </audio> 
+  
+  <!-- 🌿 Nature Sounds --> 
+  <audio id="natureSound" loop muted>
+    <source src="birds39-forest-20772.mp3" type="audio/mpeg" /> 
+  </audio>
 
   <script>
-    // Fade in the body
-    window.addEventListener("load", () => {
-      document.body.classList.add("fade-in");
+    const verses = [
+      '"I can do all things through Christ who strengthens me." - Philippians 4:13',
+      '"Be still, and know that I am God." - Psalm 46:10',
+      '"The Lord is my shepherd; I shall not want." - Psalm 23:1',
+      '"Trust in the Lord with all your heart." - Proverbs 3:5',
+      '"When I am afraid, I put my trust in You." - Psalm 56:3',
+    ];
 
-      // Try autoplay muted
-      document.getElementById("bgMusic").play().catch(e => console.log("Music autoplay blocked:", e));
-      document.getElementById("natureSound").play().catch(e => console.log("Nature autoplay blocked:", e));
-    });
+    let index = 0;
+    const verseBox = document.getElementById("verseBox");
 
-    const bgMusic = document.getElementById("bgMusic");
-    const natureSound = document.getElementById("natureSound");
+    function showVerse() {
+      verseBox.textContent = verses[index];
+      index = (index + 1) % verses.length;
+    }
 
-    bgMusic.volume = 0.6;
-    natureSound.volume = 0.4;
-
-    // Enable audio on first click
-    document.addEventListener("click", () => {
-      bgMusic.muted = false;
-      natureSound.muted = false;
-      bgMusic.play().catch(e => console.log("Play blocked:", e));
-      natureSound.play().catch(e => console.log("Play blocked:", e));
-    }, { once: true });
-
-    let isMusicPlaying = true;
-    let isNaturePlaying = true;
+    showVerse();
+    setInterval(showVerse, 7000); // Change verse every 7 seconds
 
     function toggleMusic() {
-      if (isMusicPlaying) {
-        bgMusic.pause();
-        document.querySelector('.music-button').innerText = '🔈';
-      } else {
-        bgMusic.play().catch(e => console.log("Toggle play blocked:", e));
-        document.querySelector('.music-button').innerText = '🔊';
-      }
-      isMusicPlaying = !isMusicPlaying;
+      const music = document.getElementById("bg-music");
+      music.paused ? music.play() : music.pause();
     }
-
-    function toggleNature() {
-      if (isNaturePlaying) {
-        natureSound.pause();
-        document.querySelector('.nature-button').innerText = '🌱';
-      } else {
-        natureSound.play().catch(e => console.log("Toggle play blocked:", e));
-        document.querySelector('.nature-button').innerText = '🌿';
-      }
-      isNaturePlaying = !isNaturePlaying;
-    }
-
-    // Bible Verse Slideshow
-    const verses = [
-      '"Be still and know that I am God." - Psalm 46:10',
-      '"I can do all things through Christ who strengthens me." - Philippians 4:13',
-      '"The joy of the Lord is your strength." - Nehemiah 8:10',
-      '"When I am afraid, I put my trust in You." - Psalm 56:3',
-      '"Cast all your anxiety on Him because He cares for you." - 1 Peter 5:7'
-    ];
-    let currentVerse = 0;
-    setInterval(() => {
-      currentVerse = (currentVerse + 1) % verses.length;
-      document.getElementById("verseBox").innerText = verses[currentVerse];
-    }, 7000);
   </script>
 </body>
 </html>
